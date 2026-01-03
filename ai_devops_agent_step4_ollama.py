@@ -1,6 +1,6 @@
 import os
 from git import Repo
-from langchain.llms import Ollama
+from langchain_community.llms import Ollama
 
 # 1️⃣ Local LLM (Ollama)
 llm = Ollama(model="mistral", temperature=0)

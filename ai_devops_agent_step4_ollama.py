@@ -12,31 +12,6 @@ def create_ci_workflow():
 
     workflow_path = os.path.join(workflow_dir, "ci.yml")
 
-#     workflow_content = """
-# name: Python CI
-
-# on: [push]
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-
-#       - name: Set up Python
-#         uses: actions/setup-python@v5
-#         with:
-#           python-version: '3.11'
-
-#       - name: Install dependencies
-#         run: pip install -r requirements.txt || true
-
-#       - name: Run tests
-#         run: echo "No tests yet"
-# """
-
-#     with open(workflow_path, "w") as f:
-#         f.write(workflow_content)
 
     print("✅ CI workflow created")
 

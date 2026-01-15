@@ -26,7 +26,39 @@ def commit_and_push():
 # 4️⃣ Execute (AI assists, but DOES NOT decide tools)
 print("🧠 AI Agent starting (Ollama)")
 
-create_ci_workflow()
-commit_and_push()
+def create_ci_workflow():
+    workflow_dir = ".github/workflows"
+    os.makedirs(workflow_dir, exist_ok=True)
 
-print("🚀 DONE: CI/CD workflow deployed successfully")
+    workflow_path = os.path.join(workflow_dir, "ci.yml")
+
+    workflow_content = """
+name: Python CI
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || true
+          pip install pytest
+
+      - name: Run pytest
+        run: pytest
+"""
+
+    with open(workflow_path, "w") as f:
+        f.write(workflow_content)
+
+    print("✅ CI workflow with pytest created")
+
